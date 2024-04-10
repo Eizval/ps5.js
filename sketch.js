@@ -16,11 +16,11 @@ function setup() {
       let radius;
       radius = random(90);
       const smallWidth = radius;
-      let squareNumber = random(5);
-      for(i = 0; i <= squareNumber; i++){
-        smallX = random(bigX , bigX + bigRadius -smallWidth);
-        smallY = random(bigY, bigY + bigRadius -smallWidth);
-        
+      let squareNumber = random(4);
+      for (i = 0; i <= squareNumber; i++) {
+        smallX = random(bigX, bigX + bigRadius - smallWidth);
+        smallY = random(bigY, bigY + bigRadius - smallWidth);
+
         square(smallX, smallY, smallWidth);
       }
 
