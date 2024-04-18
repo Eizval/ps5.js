@@ -26,5 +26,26 @@ h1 {
 
 nav{
   text-align: center;
-  background-color: aqua;
+  background-color: rgb(66, 165, 165);
+  padding: 10px;
+}
+
+a:hover{
+  color: rgb(99, 20, 20);
+}
+a:active{
+  color: aliceblue;
+}
+
+a:link{
+  color: black;
+}
+
+
+
+.main{
+  margin: auto;
+  width: 60%;
+  color: beige;
+  text-align: center;
 }
