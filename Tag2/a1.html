@@ -7,12 +7,14 @@
 
     <link rel="stylesheet" type="text/css" href="../style.css" />
 
+    <script src="../nav/index.js"></script>
     <script src="../libraries/p5.min.js"></script>
     <script src="../libraries/p5.sound.min.js"></script>
     <script src="../libraries/quicksettings.js"></script>
     <script src="../libraries/p5.gui.js"></script>
 </head>
 <body>
+  <div w3-include-html="../nav/content.html"></div>
     <div>
         <h1>Aufgabe 1</h1>
         <p>This image shows 2 Pictures. The first Pictures pixels are only shown when the modulo of the green value of the Pixel is 1 else the second pictures pixel will be shown.</p>
@@ -33,3 +35,7 @@
     }
   </style>
 </html>
+
+<script>
+  includeHTML();
+</script>

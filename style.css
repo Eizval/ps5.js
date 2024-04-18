@@ -23,3 +23,8 @@ h1 {
   margin: auto;
   width: 50%;
 }
+
+nav{
+  text-align: center;
+  background-color: aqua;
+}
