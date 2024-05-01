@@ -21,16 +21,19 @@ let F = 20;
 let f = 13;
 
 function setup() {
+
+    //tries drawing function on the top right corner but why ???
   createCanvas(500, 500);
   translate(width / 2, height);
   anglePos = radians(30);
   angleNeg = radians(40);
-  stroke(1, 75);
-  strokeWeight(0.7);
+  stroke(50, 75);
+  strokeWeight(1);
+  background(230);
+
 }
 
 function draw() {
-  background(230);
 }
 
 function generate() {
@@ -70,17 +73,22 @@ function turtle() {
     var currentChar = pattern.charAt(i);
     if (currentChar === "F") {
       drawF();
-      console.log("Tries drawing F");
+    //   console.log("Tries drawing F");
     } else if (currentChar === "f") {
       drawf();
+    //   console.log("Tries drawing f");
     } else if (currentChar === "+") {
       anglePositive();
+    //   console.log("Tries drawing +");
     } else if (currentChar === "-") {
       angleNegative();
+    //   console.log("Tries drawing -");
     } else if (currentChar === "[") {
       drawPush();
+    //   console.log("Tries drawing [");
     } else if (currentChar === "]") {
       drawPop();
+    //   console.log("Tries drawing ]");
     }
   }
 }
@@ -88,7 +96,8 @@ function turtle() {
 function drawF() {
   line(0, 0, 0, -F);
   translate(0, -F);
-  
+//   console.log("Wafjasöfjaskfjasfdasjasöfaslfjsölf");
+console.log("Tries drawing F");
 }
 
 function drawf() {
