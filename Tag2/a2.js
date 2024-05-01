@@ -74,44 +74,4 @@ function mousePressed() {
   if (currentImageIndex >= numberOfImages) {
     currentImageIndex = 0;
   }
-
-//   console.log(currentImageIndex);
-//   if ((currentImageIndex = 0)) {
-//     //Blue
-//     for (let i = 0; i < img2.pixels.length; i += 4) {
-//       img2.pixels[i + 0] = 0;
-//       img2.pixels[i + 1] = 0;
-//       img2.pixels[i + 3] = 255;
-//       currentImageIndex++;
-//     }
-//     console.log("Blue", currentImageIndex);
-//   } else if ((currentImageIndex = 1)) {
-//     //Red
-//     for (let i = 0; i < img2.pixels.length; i += 4) {
-//       img2.pixels[i + 1] = 0;
-//       img2.pixels[i + 2] = 0;
-//       img2.pixels[i + 3] = 255;
-//       currentImageIndex++;
-//     }
-//     console.log("RED", currentImageIndex);
-//   } else if ((currentImageIndex = 2)) {
-//     //Green
-//     for (let i = 0; i < img2.pixels.length; i += 4) {
-//       img2.pixels[i + 0] = 0;
-//       img2.pixels[i + 2] = 0;
-//       img2.pixels[i + 3] = 255;
-//       currentImageIndex++;
-//     }
-//     console.log("Green", currentImageIndex);
-//   } else if ((currentImageIndex = 3)) {
-//     //Shows all colors
-//     for (let i = 0; i < img2.pixels.length; i += 4) {
-//       img2.pixels[i + 3] = 255;
-//       currentImageIndex++;
-//     }
-//     console.log("All", currentImageIndex);
-//   } else if ((currentImageIndex = 4)) {
-//     currentImageIndex = 0;
-//   }
-  
 }
