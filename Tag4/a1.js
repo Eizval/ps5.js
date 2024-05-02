@@ -17,16 +17,15 @@ theRules[5] = ["[F]"];
 
 let anglePos;
 let angleNeg;
-let F = 20;
+let F = 100;
 let f = 13;
 
 function setup() {
 
     //tries drawing function on the top right corner but why ???
   createCanvas(500, 500);
-  translate(width / 2, height);
-  anglePos = radians(30);
-  angleNeg = radians(40);
+  anglePos = radians(58);
+  angleNeg = radians(30);
   stroke(50, 75);
   strokeWeight(1);
   background(230);
@@ -34,6 +33,7 @@ function setup() {
 }
 
 function draw() {
+  translate(width / 2, height);
 }
 
 function generate() {
