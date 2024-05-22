@@ -1,3 +1,4 @@
+
 function setup() {
   createCanvas(400, 400);
   background(220);
@@ -18,6 +19,7 @@ function setup() {
       const smallWidth = radius;
       let squareNumber = random(4);
       for (i = 0; i <= squareNumber; i++) {
+        stroke(random(255), random(255), random(255));
         smallX = random(bigX, bigX + bigRadius - smallWidth);
         smallY = random(bigY, bigY + bigRadius - smallWidth);
 
@@ -39,4 +41,3 @@ function setup() {
   }
 }
 
-function draw() {}
