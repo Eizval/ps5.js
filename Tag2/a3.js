@@ -13,5 +13,6 @@ function setup() {
 function draw() {}
 
 function mousePressed() {
+  clear();
   image(img, mouseX/2, mouseY/2, mouseX, mouseY);
 }
