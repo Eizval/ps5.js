@@ -1,4 +1,5 @@
 let pixel = [];
+let nextGeneration = [];
 let squareSideLenght = 20;
 let gameIsRunning = false;
 let yWidth;
@@ -20,7 +21,6 @@ function setup() {
   }
 
   createCanvas(xWidth, yWidth);
-  //   strokeWeight(1);
   createField();
 
   print(pixel);
@@ -29,12 +29,11 @@ function setup() {
 
 function draw() {
   frameRate(10);
-  //   print(pixel)
   redrawField();
   if (gameIsRunning) {
     liveRules();
+    copyArrayValues();
   }
-  // print(gameIsRunning);
 }
 
 function mousePressed() {
@@ -59,7 +58,7 @@ function redrawField() {
     for (let y = 0; y < pixel[x].length; y++) {
       currentSquare = pixel[x][y];
       if (currentSquare.isAlive == true) {
-        fill(255, 2, 255);
+        fill(20, 180, 255);
       } else {
         fill(0);
       }
@@ -74,47 +73,77 @@ function createField() {
 
   for (let x = 0; x < width; x += squareSideLenght) {
     pixel.push([]);
+    nextGeneration.push([]);
     for (let y = 0; y < height; y += squareSideLenght) {
       square(x, y, squareSideLenght);
       pixel[pixel.length - 1].push({ x, y, isAlive: false });
+      nextGeneration[nextGeneration.length - 1].push(false);
+    }
+  }
+}
+
+function copyArrayValues() {
+  for (let x = 0; x < pixel.length; x++) {
+    for (let y = 0; y < pixel[x].length; y++) {
+      pixel[x][y].isAlive = nextGeneration[x][y];
     }
   }
 }
 
 function liveRules() {
-  // wenn er am rand ist dann schaut er ob es negative
-  // ist oder ob es grösser ist als die max zahl und dann nehmt er die differenz
-  // und sucht das feld mit diesen x / y achsen und das ist dass feld dass er jetzt schauen
-  // muss ob es alive ist oder nicht
-  oldCell = pixel;
   for (let x = 0; x < pixel.length; x++) {
     for (let y = 0; y < pixel[x].length; y++) {
-      if (oldCell[x][y].isAlive) {
-        let centerX = oldCell[x][y].x;
-        let centerY = oldCell[x][y].y;
-        let partnerCellsAlive = 0;
+      let center = pixel[x][y];
+      let partnerCellsAlive = 0;
 
-        let currentX = centerX - squareSideLenght;
-        let currentY = centerY - squareSideLenght;
+      for (let innerFieldX = -1; innerFieldX < 2; innerFieldX++) {
+        for (let innerFieldY = -1; innerFieldY < 2; innerFieldY++) {
+          let currentX = x + innerFieldX;
+          let currentY = y + innerFieldY;
 
-        if (currentX < 0 && currentY < 0) {
-          let cX = pixel.length - 1;
-          let cY = pixel[x].length - 1;
-          if (oldCell[cX][cY].isAlive) {
-            partnerCellsAlive += 1;
+          if (innerFieldX == 0 && innerFieldY == 0) {
+            continue;
           }
-        } else if (currentX > 0 && currentY < 0) {
-        } else if (currentY > yWidth - squareSideLenght && currentX > 0) {
-        } //else if ()
-        print(partnerCellsAlive);
+
+          if (currentX < 0) {
+            currentX += pixel.length;
+          }
+          if (currentX > pixel.length - 1) {
+            currentX -= pixel.length;
+          }
+
+          if (currentY < 0) {
+            currentY += pixel[currentX].length;
+          }
+          if (currentY > pixel[currentX].length - 1) {
+            currentY -= pixel[currentX].length;
+          }
+
+          if (pixel[currentX][currentY].isAlive) {
+            partnerCellsAlive++;
+          }
+        }
+      }
+
+      if (center.isAlive && (partnerCellsAlive > 3 || partnerCellsAlive < 2)) {
+        nextGeneration[x][y] = false;
+      }
+      if (
+        center.isAlive &&
+        (partnerCellsAlive == 3 || partnerCellsAlive == 2)
+      ) {
+        nextGeneration[x][y] = true;
+      }
+
+      if (!center.isAlive && partnerCellsAlive == 3) {
+        nextGeneration[x][y] = true;
       }
     }
   }
-  print(oldCell);
-  // print(oldCell[centerX - squareSideLenght]);
 }
 
 function keyPressed() {
+  //ENTER
   if (keyCode === 13) {
     gameIsRunning = !gameIsRunning;
   }
