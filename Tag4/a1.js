@@ -1,39 +1,41 @@
 let axiom = "F";
 let pattern = axiom;
+let canvas;
+
 
 let theRules = [];
 //F
-theRules[0] = ["[+]-f"];
+theRules[0] = ["+]-fF"];
 //f
-theRules[1] = ["F-+"];
+theRules[1] = ["F-+F"];
 //+
-theRules[2] = ["-Ff++"];
+theRules[2] = ["-FF+"];
 //-
-theRules[3] = ["[f+--ffF-+]"];
+theRules[3] = ["[fFF-+]"];
 //[
-theRules[4] = ["++ff"];
+theRules[4] = ["ffF"];
 //]
-theRules[5] = ["[F]"];
+theRules[5] = ["F]"];
 
 let anglePos;
 let angleNeg;
-let F = 100;
+let F = 50;
 let f = 13;
 
 function setup() {
-
-    //tries drawing function on the top right corner but why ???
-  createCanvas(500, 500);
+  //tries drawing function on the top right corner but why ???
+  canvas = createCanvas(500, 500);
+  // canvas.mouseClicked(generate());
   anglePos = radians(58);
   angleNeg = radians(30);
   stroke(50, 75);
   strokeWeight(1);
   background(230);
-
 }
 
 function draw() {
-  translate(width / 2, height);
+  // translate(width / 2, height);
+  translate(width / 2, height / 2);
 }
 
 function generate() {
@@ -73,22 +75,22 @@ function turtle() {
     var currentChar = pattern.charAt(i);
     if (currentChar === "F") {
       drawF();
-    //   console.log("Tries drawing F");
+      //   console.log("Tries drawing F");
     } else if (currentChar === "f") {
       drawf();
-    //   console.log("Tries drawing f");
+      //   console.log("Tries drawing f");
     } else if (currentChar === "+") {
       anglePositive();
-    //   console.log("Tries drawing +");
+      //   console.log("Tries drawing +");
     } else if (currentChar === "-") {
       angleNegative();
-    //   console.log("Tries drawing -");
+      //   console.log("Tries drawing -");
     } else if (currentChar === "[") {
       drawPush();
-    //   console.log("Tries drawing [");
+      //   console.log("Tries drawing [");
     } else if (currentChar === "]") {
       drawPop();
-    //   console.log("Tries drawing ]");
+      //   console.log("Tries drawing ]");
     }
   }
 }
@@ -96,8 +98,8 @@ function turtle() {
 function drawF() {
   line(0, 0, 0, -F);
   translate(0, -F);
-//   console.log("Wafjasöfjaskfjasfdasjasöfaslfjsölf");
-console.log("Tries drawing F");
+  //   console.log("Wafjasöfjaskfjasfdasjasöfaslfjsölf");
+  console.log("Tries drawing F");
 }
 
 function drawf() {
@@ -125,5 +127,9 @@ function drawPop() {
 }
 
 function mousePressed() {
-  generate();
+  if (mouseX > -1 && mouseX < width + 1) {
+    if (mouseY > -1 && mouseY < height + 1) {
+      generate();
+    }
+  }
 }

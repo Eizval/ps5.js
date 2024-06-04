@@ -27,3 +27,17 @@ p{
   text-align: center;
   color: aliceblue;
 }
+
+table, th, td {
+  margin-left: 5%;
+  /* padding-left: 10%; */
+}
+
+th {
+  width: 500px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}

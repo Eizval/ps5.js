@@ -34,20 +34,30 @@ function draw() {
     // print(lastWord + " This string");
     for (i = 0; i < arr2D.length; i++) {
       if (arr2D[i][0] === lastWord) {
+        lastWord === arr2D.length ? (lastWord = 2) : (lastWord = lastWord);
         innerLenght = arr2D[i].length;
         // print(" Inner lenght " + innerLenght);
         innerLenght = Math.ceil(innerLenght) - 1;
         // print(" Inner lenght " + innerLenght);
         nextWord = random(0, innerLenght);
+
+        
+
         nextWord = Math.ceil(nextWord);
         nextWord === 0 ? (nextWord = 1) : (nextWord = nextWord);
         if(!nextWord) {
           nextWord = "";
         }
+        // if(i == arr2D.length){
+        //   nextWord = 5;
+        // }
         // nextWord === undefined ? (nextWord = "") : (nextWord = nextWord);
         // print(" Inner Word " + nextWord);
 
         additionalText = arr2D[i][nextWord] + " ";
+        // if(additionalText == "cold"){
+        //   print(additionalText)
+        // }
         wholeText += arr2D[i][nextWord] + " ";
       }
     }
@@ -79,6 +89,7 @@ function makeArrayInArray() {
       if (arr2D[i][0] === words[arr]) {
         //Doesnt do the last round through
         if (arr == words.length - 1) {
+          arr2D[i].push(words[0]);
           break;
         } else {
           arr2D[i].push(words[arr + 1]);
