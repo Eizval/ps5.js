@@ -12,7 +12,7 @@ function setup() {
   createCanvas(canvasX, canvasY);
   background(200);
   startUniverse();
-  print(squares);
+  // print(squares);
   
 }
 

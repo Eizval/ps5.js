@@ -97,7 +97,7 @@ function makeArrayInArray() {
       }
     }
   }
-  console.log(arr2D);
+  // console.log(arr2D);
 }
 
 function make2DArrayUniqueWords() {

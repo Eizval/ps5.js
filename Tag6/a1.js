@@ -23,8 +23,8 @@ function setup() {
   createCanvas(xWidth, yWidth);
   createField();
 
-  print(pixel);
-  print(xWidth + " / " + yWidth);
+  // print(pixel);
+  // print(xWidth + " / " + yWidth);
 }
 
 function draw() {
