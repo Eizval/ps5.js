@@ -88,6 +88,11 @@ function setup() {
     windowWidth * 0.8,
     windowHeight * 0.17
   );
+
+  let reset = createButton('Reset Screen');
+  reset.position(windowWidth * 0.47, windowHeight * 0.88);
+  reset.mousePressed(clearScreen);
+
   // createButtons();
   createRulesText();
   createText();
@@ -452,4 +457,12 @@ function drawCurrentRuleSet() {
 function windowResized() {
   // console.log("window got rezized to x: "+ windowWidth + ", y: " + windowHeight)
   updateSliderPosition();
+}
+
+
+function clearScreen(){
+  clear();
+  background(230);
+  runs = 0;
+  pattern = axiom;
 }
