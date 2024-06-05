@@ -89,11 +89,20 @@ function setup() {
     windowHeight * 0.17
   );
 
-  let reset = createButton('Reset Screen');
+  let axiomTag = createElement("p", "The start is: " + axiom).position(
+    windowWidth * 0.47,
+    windowHeight * 0.93
+  );
+
+  let reset = createButton("Reset Screen");
   reset.position(windowWidth * 0.47, windowHeight * 0.88);
   reset.mousePressed(clearScreen);
 
-  // createButtons();
+  let resetRule = createButton("Reset Ruleset");
+  resetRule.position(windowWidth * 0.8, windowHeight * 0.75);
+  resetRule.mousePressed(resetRuleSet);
+
+  createButtons();
   createRulesText();
   createText();
   updateSliderPosition();
@@ -119,6 +128,14 @@ function draw() {
   redrawText();
   drawCurrentRuleSet();
   // onButtonPressed();
+
+  // let radioValue = myRadio.value();
+  buttonF.mousePressed(buttonFPressed);
+  buttonf.mousePressed(buttonfPressed);
+  buttonPos.mousePressed(buttonPosPressed);
+  buttonNeg.mousePressed(buttonNegPressed);
+  buttonPop.mousePressed(buttonPopPressed);
+  buttonPush.mousePressed(buttonPushPressed);
 }
 
 function generate() {
@@ -281,7 +298,7 @@ function redrawText() {
   textf.remove();
   textf = createElement(
     "p",
-    "Lenght of not drawn line (F) value: " + sliderSmallf.value()
+    "Lenght of not drawn line (f) value: " + sliderSmallf.value()
   );
   textF.remove();
   textF = createElement(
@@ -392,77 +409,123 @@ function drawCurrentRuleSet() {
   }
 }
 
-// function createButtons() {
-//   // for(let i = 0; i < defaultRules.length; i++){
-//   //   createButton(defaultRules[i]).position(windowWidth * (i / 50 + 0.8), windowHeight * 0.5);
-//   // }
-//   buttonF = createButton(defaultRules[0]).position(
-//     windowWidth * 0.8,
-//     windowHeight * 0.5
-//   );
-//   buttonf = createButton(defaultRules[1]).position(
-//     windowWidth * 0.82,
-//     windowHeight * 0.5
-//   );
-//   buttonPos = createButton(defaultRules[2]).position(
-//     windowWidth * 0.84,
-//     windowHeight * 0.5
-//   );
-//   buttonNeg = createButton(defaultRules[3]).position(
-//     windowWidth * 0.86,
-//     windowHeight * 0.5
-//   );
-//   buttonPop = createButton(defaultRules[4]).position(
-//     windowWidth * 0.88,
-//     windowHeight * 0.5
-//   );
-//   buttonPush = createButton(defaultRules[5]).position(
-//     windowWidth * 0.9,
-//     windowHeight * 0.5
-//   );
-// }
+function createButtons() {
+  // for(let i = 0; i < defaultRules.length; i++){
+  //   createButton(defaultRules[i]).position(windowWidth * (i / 50 + 0.8), windowHeight * 0.5);
+  // }
+  buttonF = createButton(defaultRules[0]).position(
+    windowWidth * 0.8,
+    windowHeight * 0.5
+  );
+  buttonf = createButton(defaultRules[1]).position(
+    windowWidth * 0.82,
+    windowHeight * 0.5
+  );
+  buttonPos = createButton(defaultRules[2]).position(
+    windowWidth * 0.84,
+    windowHeight * 0.5
+  );
+  buttonNeg = createButton(defaultRules[3]).position(
+    windowWidth * 0.86,
+    windowHeight * 0.5
+  );
+  buttonPop = createButton(defaultRules[4]).position(
+    windowWidth * 0.88,
+    windowHeight * 0.5
+  );
+  buttonPush = createButton(defaultRules[5]).position(
+    windowWidth * 0.9,
+    windowHeight * 0.5
+  );
+}
 
-// function onButtonPressed() {
-//   let radioValue = myRadio.value();
-//   // for(let i = 0; i < defaultRules.length; i++){
-//   //   theRules[radioValue] += defaultRules[i];
-//   // }
+function onButtonPressed() {
+  let radioValue = myRadio.value();
+  // for(let i = 0; i < defaultRules.length; i++){
+  //   theRules[radioValue] += defaultRules[i];
+  // }
 
-//   buttonF.mousePressed(() => (pressed = true));
-//   if (pressed) {
-//     theRules[radioValue] += defaultRules[0];
-//   }
-//   buttonf.mousePressed(() => (pressed1 = true));
-//   if (pressed1) {
-//     theRules[radioValue] += defaultRules[1];
-//   }
-//   buttonPos.mousePressed(() => (pressed2 = true));
-//   if (pressed2) {
-//     theRules[radioValue] += defaultRules[2];
-//   }
-//   buttonNeg.mousePressed(() => (pressed3 = true));
-//   if (pressed3) {
-//     theRules[radioValue] += defaultRules[3];
-//   }
-//   buttonPop.mousePressed(() => (pressed4 = true));
-//   if (pressed4) {
-//     theRules[radioValue] += defaultRules[4];
-//   }
-//   buttonPush.mousePressed(() => (pressed5 = true));
-//   if (pressed5) {
-//     theRules[radioValue] += defaultRules[5];
-//   }
-// }
+  pressed = false;
+  pressed1 = false;
+  pressed2 = false;
+  pressed3 = false;
+  pressed4 = false;
+  pressed5 = false;
+
+  // buttonF.mousePressed(theRules[radioValue] += defaultRules[0]);
+  // if (pressed) {
+  //   theRules[radioValue] += defaultRules[0];
+  // }
+  // buttonf.mousePressed( theRules[radioValue] += defaultRules[1]);
+  // if (pressed1) {
+  //   theRules[radioValue] += defaultRules[1];
+  // }
+  buttonPos.mousePressed(() => (pressed2 = true));
+  if (pressed2) {
+    theRules[radioValue] += defaultRules[2];
+  }
+  buttonNeg.mousePressed(() => (pressed3 = true));
+  if (pressed3) {
+    theRules[radioValue] += defaultRules[3];
+  }
+  buttonPop.mousePressed(() => (pressed4 = true));
+  if (pressed4) {
+    theRules[radioValue] += defaultRules[4];
+  }
+  buttonPush.mousePressed(() => (pressed5 = true));
+  if (pressed5) {
+    theRules[radioValue] += defaultRules[5];
+    print(theRules[radioValue]);
+  }
+}
 
 function windowResized() {
   // console.log("window got rezized to x: "+ windowWidth + ", y: " + windowHeight)
   updateSliderPosition();
 }
 
-
-function clearScreen(){
+function clearScreen() {
   clear();
   background(230);
   runs = 0;
   pattern = axiom;
+}
+
+function buttonFPressed() {
+  let radioValue = myRadio.value();
+  // let
+  // for(let i = 0; i < theRules.length; i++){
+
+  // }
+  theRules[radioValue] += defaultRules[0];
+}
+
+function buttonfPressed() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] += defaultRules[1];
+}
+
+function buttonPosPressed() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] += defaultRules[2];
+}
+
+function buttonNegPressed() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] += defaultRules[3];
+}
+
+function buttonPopPressed() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] += defaultRules[4];
+}
+
+function buttonPushPressed() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] += defaultRules[5];
+}
+
+function resetRuleSet() {
+  let radioValue = myRadio.value();
+  theRules[radioValue] = "";
 }

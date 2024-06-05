@@ -13,6 +13,7 @@ function setup() {
   background(200);
   startUniverse();
   print(squares);
+  
 }
 
 function draw() {
