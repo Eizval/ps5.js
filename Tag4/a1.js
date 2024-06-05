@@ -1,4 +1,4 @@
-let axiom = "F";
+let axiom = "F+F+F+F";
 let pattern = axiom;
 let canvas;
 let runs = 0;
