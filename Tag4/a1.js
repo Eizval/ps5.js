@@ -67,12 +67,13 @@ defaultRules[5] = ["]"];
 
 let distanceSlider = 150;
 let distanceText = 100;
+let radioValue;
 
 function setup() {
   // factorF = 0.7;
   // factorf = 0.6;
   //tries drawing function on the top right corner but why ???
-  canvas = createCanvas(500, 500);
+  canvas = createCanvas(windowWidth * 0.4, windowHeight * 0.55);
   myRadio = createRadio();
   myRadio.position(windowWidth * 0.8, windowHeight * 0.13);
   // myRadio.style(windowWidth * 0.8, "100px");
@@ -128,6 +129,7 @@ function draw() {
   redrawText();
   drawCurrentRuleSet();
   // onButtonPressed();
+  radioValue = myRadio.value();
 
   // let radioValue = myRadio.value();
   buttonF.mousePressed(buttonFPressed);
@@ -360,57 +362,30 @@ function createText() {
 }
 
 function createRulesText() {
-  // for (let i = 0; i < theRules.length; i++) {
-  //   ruleSets = createElement("p", "Ruleset " + i + ": " + theRules[i]).position(windowWidth * 0.8, windowHeight * (i / 10 + 0.1));
-  // }
-
-  // rule0Text = createElement("p", "Ruleset " + 0 + ": " + theRules[0]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.1
-  // );
-  // rule1Text = createElement("p", "Ruleset " + 1 + ": " + theRules[1]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.15
-  // );
-
-  // // myRadio.style(windowWidth * 0.8, '200px')
-  // rule2Text = createElement("p", "Ruleset " + 2 + ": " + theRules[2]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.2
-  // );
-  // rule3Text = createElement("p", "Ruleset " + 3 + ": " + theRules[3]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.25
-  // );
-  // rule4Text = createElement("p", "Ruleset " + 4 + ": " + theRules[4]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.3
-  // );
-  // rule5Text = createElement("p", "Ruleset " + 5 + ": " + theRules[5]).position(
-  //   windowWidth * 0.8,
-  //   windowHeight * 0.35
-  // );
   myRadio.option("0", 0);
   myRadio.option("1", 1);
   myRadio.option("2", 2);
-  myRadio.option("3", 3);
-  myRadio.option("4", 4);
-  myRadio.option("5", 5);
 
-  let rule = createElement(
-    "p",
-    "Rule 0 = 'F' Rule 1 = 'f' Rule 2 = '+' Rule 3 = '-' Rule 4 = '[' Rule 5 = ']'"
-  );
+  let rule = createElement("p", "Rule 0 = 'F' Rule 1 = 'f' Rule 3 = 'axiom'");
 }
 
 function drawCurrentRuleSet() {
   let radioValue = myRadio.value();
-  if (radioValue < 6 && radioValue > -1) {
-    currentRule.remove();
-    currentRule = createElement("p", theRules[radioValue]).position(
-      windowWidth * 0.8,
-      windowHeight * 0.17
-    );
+  if (radioValue < 3 && radioValue > -1) {
+    if(radioValue == 2){
+      print(pattern);
+      currentRule.remove();
+      currentRule = createElement("p", pattern).position(
+        windowWidth * 0.8,
+        windowHeight * 0.17
+      );
+    } else {
+      currentRule.remove();
+      currentRule = createElement("p", theRules[radioValue]).position(
+        windowWidth * 0.8,
+        windowHeight * 0.17
+      );
+    }
   }
 }
 
@@ -445,43 +420,67 @@ function createButtons() {
 }
 
 function onButtonPressed() {
-  let radioValue = myRadio.value();
-  // for(let i = 0; i < defaultRules.length; i++){
-  //   theRules[radioValue] += defaultRules[i];
-  // }
+  // let radioValue = myRadio.value();
+  // // for(let i = 0; i < defaultRules.length; i++){
+  // //   theRules[radioValue] += defaultRules[i];
+  // // }
 
-  pressed = false;
-  pressed1 = false;
-  pressed2 = false;
-  pressed3 = false;
-  pressed4 = false;
-  pressed5 = false;
+  // pressed = false;
+  // pressed1 = false;
+  // pressed2 = false;
+  // pressed3 = false;
+  // pressed4 = false;
+  // pressed5 = false;
 
-  // buttonF.mousePressed(theRules[radioValue] += defaultRules[0]);
+  // buttonF.mousePressed((theRules[radioValue] += defaultRules[0]));
   // if (pressed) {
-  //   theRules[radioValue] += defaultRules[0];
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[0]
+  //   } else {
+  //     theRules[radioValue] += defaultRules[0];
+  //   }
   // }
-  // buttonf.mousePressed( theRules[radioValue] += defaultRules[1]);
+  // buttonf.mousePressed((theRules[radioValue] += defaultRules[1]));
   // if (pressed1) {
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[1]
+  //   } else {
   //   theRules[radioValue] += defaultRules[1];
+  //   }
   // }
-  buttonPos.mousePressed(() => (pressed2 = true));
-  if (pressed2) {
-    theRules[radioValue] += defaultRules[2];
-  }
-  buttonNeg.mousePressed(() => (pressed3 = true));
-  if (pressed3) {
-    theRules[radioValue] += defaultRules[3];
-  }
-  buttonPop.mousePressed(() => (pressed4 = true));
-  if (pressed4) {
-    theRules[radioValue] += defaultRules[4];
-  }
-  buttonPush.mousePressed(() => (pressed5 = true));
-  if (pressed5) {
-    theRules[radioValue] += defaultRules[5];
-    print(theRules[radioValue]);
-  }
+  // buttonPos.mousePressed(() => (pressed2 = true));
+  // if (pressed2) {
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[2]
+  //   } else {
+  //   theRules[radioValue] += defaultRules[2];
+  //   }
+  // }
+  // buttonNeg.mousePressed(() => (pressed3 = true));
+  // if (pressed3) {
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[3]
+  //   } else {
+  //   theRules[radioValue] += defaultRules[3];
+  //   }
+  // }
+  // buttonPop.mousePressed(() => (pressed4 = true));
+  // if (pressed4) {
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[4]
+  //   } else {
+  //   theRules[radioValue] += defaultRules[4];
+  //   }
+  // }
+  // buttonPush.mousePressed(() => (pressed5 = true));
+  // if (pressed5) {
+  //   if(radioValue == 2){
+  //     pattern += defaultRules[5]
+  //   } else {
+  //   theRules[radioValue] += defaultRules[5];
+  //   }
+  //   // print(theRules[radioValue]);
+  // }
 }
 
 function windowResized() {
@@ -497,40 +496,61 @@ function clearScreen() {
 }
 
 function buttonFPressed() {
-  let radioValue = myRadio.value();
   // let
   // for(let i = 0; i < theRules.length; i++){
 
   // }
-  theRules[radioValue] += defaultRules[0];
+  if(radioValue == 2) {
+    pattern += defaultRules[0];
+  } else {
+    theRules[radioValue] += defaultRules[0];
+  }
 }
 
 function buttonfPressed() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] += defaultRules[1];
+  if(radioValue == 2) {
+    pattern += defaultRules[1];
+  } else {
+    theRules[radioValue] += defaultRules[1];
+  }
 }
 
 function buttonPosPressed() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] += defaultRules[2];
+  if(radioValue == 2) {
+    pattern += defaultRules[2];
+  } else {
+    theRules[radioValue] += defaultRules[2];
+  }
 }
 
 function buttonNegPressed() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] += defaultRules[3];
+  if(radioValue == 2) {
+    pattern += defaultRules[3];
+  } else {
+    theRules[radioValue] += defaultRules[3];
+  }
 }
 
 function buttonPopPressed() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] += defaultRules[4];
+  if(radioValue == 2) {
+    pattern += defaultRules[4];
+  } else {
+    theRules[radioValue] += defaultRules[4];
+  }
 }
 
 function buttonPushPressed() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] += defaultRules[5];
+  if(radioValue == 2) {
+    pattern += defaultRules[5];
+  } else {
+    theRules[radioValue] += defaultRules[5];
+  }
 }
 
 function resetRuleSet() {
-  let radioValue = myRadio.value();
-  theRules[radioValue] = "";
+  if(radioValue == 2) {
+    pattern = "";
+  } else {
+    theRules[radioValue] = "";
+  }
 }
