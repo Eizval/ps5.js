@@ -5,17 +5,17 @@ let runs = 0;
 
 let theRules = [];
 //F
-theRules[0] = ["+]-fF"];
+theRules[0] = ["F+F-F-FF+F+F-F"];
 //f
-theRules[1] = ["F-+F"];
+theRules[1] = [""];
 //+
-theRules[2] = ["-FF+"];
+theRules[2] = [""];
 //-
-theRules[3] = ["[fFF-+]"];
+theRules[3] = [""];
 //[
-theRules[4] = ["ffF"];
+theRules[4] = [""];
 //]
-theRules[5] = ["F]"];
+theRules[5] = [""];
 
 let anglePos;
 let angleNeg;
@@ -69,20 +69,20 @@ let distanceSlider = 150;
 let distanceText = 100;
 
 function setup() {
-  factorF = 0.7;
-  factorf = 0.6;
+  // factorF = 0.7;
+  // factorf = 0.6;
   //tries drawing function on the top right corner but why ???
   canvas = createCanvas(500, 500);
   myRadio = createRadio();
   myRadio.position(windowWidth * 0.8, windowHeight * 0.13);
   // myRadio.style(windowWidth * 0.8, "100px");
   // canvas.mouseClicked(generate());
-  sliderAnglePos = createSlider(0, 360, 50, 1);
-  sliderAngleNeg = createSlider(0, 360, 13, 1);
+  sliderAnglePos = createSlider(0, 360, 90, 1);
+  sliderAngleNeg = createSlider(0, 360, 90, 1);
   sliderSmallf = createSlider(0, 50, 13, 1);
-  sliderBigf = createSlider(0, 50, 50, 1);
-  sliderfactorF = createSlider(0.01, 1, 0.5, 0.01);
-  sliderfactorf = createSlider(0.01, 1, 0.5, 0.01);
+  sliderBigf = createSlider(0, 50, 20, 1);
+  sliderfactorF = createSlider(0.01, 1, 1, 0.01);
+  sliderfactorf = createSlider(0.01, 1, 1, 0.01);
 
   currentRule = createElement("p", "Nothing Selected").position(
     windowWidth * 0.8,
@@ -118,9 +118,9 @@ function setup() {
 
 function draw() {
   // translate(width / 2, height);
-  translate(width / 2, height / 1.5);
-  anglePos = sliderAnglePos.value();
-  angleNeg = sliderAngleNeg.value();
+  translate(width / 2, height);
+  anglePos = radians(sliderAnglePos.value());
+  angleNeg = radians(sliderAngleNeg.value());
   F = sliderBigf.value();
   f = sliderSmallf.value();
   factorF = sliderfactorF.value();
@@ -157,24 +157,29 @@ function generate() {
       // console.log(newPattern, " This is the pattern value");
     } else if (currentChar === "f") {
       newPattern += theRules[1];
-    } else if (currentChar === "+") {
-      newPattern += theRules[2];
-    } else if (currentChar === "-") {
-      newPattern += theRules[3];
-    } else if (currentChar === "[") {
-      newPattern += theRules[4];
-    } else if (currentChar === "]") {
-      newPattern += theRules[5];
-    }
+    } else {
+      newPattern += currentChar;
+    } //else if (currentChar === "+") {
+    //   newPattern += theRules[2];
+    // } else if (currentChar === "-") {
+    //   newPattern += theRules[3];
+    // } else if (currentChar === "[") {
+    //   newPattern += theRules[4];
+    // } else if (currentChar === "]") {
+    //   newPattern += theRules[5];
+    // }
   }
 
-  pattern += newPattern;
+  pattern = newPattern;
   // console.log(pattern, " Pattern is this");
   runs++;
   turtle();
 }
 
 function turtle() {
+  resetMatrix();
+  translate(width / 2, height);
+  background(230);
   for (let i = 0; i < pattern.length; i++) {
     var currentChar = pattern.charAt(i);
     if (currentChar === "F") {
